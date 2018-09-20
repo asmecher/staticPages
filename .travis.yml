@@ -1,0 +1,18 @@
+# @file
+# .travis.yml - PKP Plugins Integration
+
+language: php
+
+sudo: required
+
+php:
+  - 5.6
+addons:
+  postgresql: "9.1"
+
+install:
+  - ojs.sh
+  
+script:
+  - wget http://localhost
+

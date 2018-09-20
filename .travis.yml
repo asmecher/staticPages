@@ -1,5 +1,6 @@
 language: php
 script:
-  - git clone https://github.com/asmecher/pkp-plugin-testing ../pkp-plugin-testing
-  - sh ../ojs.sh
+  - cd ..
+  - git clone --depth=1 https://github.com/asmecher/pkp-plugin-testing
+  - sh pkp-plugin-testing/ojs.sh
 

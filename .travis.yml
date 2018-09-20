@@ -1,0 +1,16 @@
+# @file
+# .travis.yml - PKP Plugins Integration
+
+language: php
+
+sudo: required
+
+php:
+  - 7.1
+
+install:
+  - sh ./setup.sh
+  
+script:
+  - wget http://localhost
+

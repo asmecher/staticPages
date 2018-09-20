@@ -11,7 +11,7 @@ addons:
   postgresql: "9.1"
 
 install:
-  - sh js.sh
+  - sh ojs.sh
   
 script:
   - wget http://localhost

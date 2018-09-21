@@ -1,4 +1,7 @@
 echo "Installing OJS"
+
+startdir=$(pwd)
+
 cd ~
 
 # Set up the OJS database
@@ -35,7 +38,7 @@ cd ../../..
 npm install
 npm run build
 
-cd ~
+cd $startdir
 ./server-setup.sh
 
 # Install OJS

@@ -37,7 +37,7 @@ cd ../../..
 # Build the vue.js dependencies
 npm install
 npm run build
-find .
+php -i
 cd $startdir
 #./server-setup.sh
 

@@ -10,12 +10,14 @@ echo "FLUSH PRIVILEGES" | mysql -uroot
 # cd /var/www
 
 # Clone the OJS repository
-git clone https://github.com/pkp/ojs .
-./tools/startSubmodulesTRAVIS.sh
+git clone https://github.com/pkp/ojs 
+cd ojs
+git submodule update --init --recursive
+# ./tools/startSubmodulesTRAVIS.sh
 cp config.TEMPLATE.inc.php config.inc.php
-mkdir ~/files
+mkdir files
 # chgrp -R www-data cache public ~/files config.inc.php
-ä chmod -R ug+w cache public ~/files config.inc.php
+# chmod -R ug+w cache public ~/files config.inc.php
 
 # Install Composer dependencies
 curl -sS https://getcomposer.org/installer | php

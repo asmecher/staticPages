@@ -6,7 +6,7 @@ language: php
 sudo: required
 
 php:
-  - 5.6
+  - 7.1
 services:
   - mysql
 

@@ -17,10 +17,24 @@ import('lib.pkp.tests.WebTestCase');
 
 class StaticPagesFunctionalTest extends WebTestCase {
 	/**
-	 * @copydoc WebTestCase::getAffectedTables
+	 * Create a journal for the test to use.
 	 */
-	protected function getAffectedTables() {
-		return PKP_TEST_ENTIRE_DB;
+	static public function setUpBeforeClass() {
+		parent::setUpBeforeClass();
+
+		$journalDao = DAORegistry::getDAO('JournalDAO');
+		$journal = $journalDao->newDataObject();
+		$journal->setPrimaryLocale('en_US');
+		$journal->setPath('testjournal');
+		$journal->setEnabled(true);
+		$journalDao->insertObject($journal);
+		$journal->updateSetting('supportedLocales', array('en_US', 'de_DE'));
+		$journal->updateSetting('supportedFormLocales', array('en_US', 'de_DE'));
+		$journal->updateSetting('supportedSubmissionLocales', array('en_US', 'de_DE'));
+		$journal->updateSetting('name', array(
+			'en_US' => 'Test journal',
+			'de_DE' => 'Wasserbüffel',
+		));
 	}
 
 	/**

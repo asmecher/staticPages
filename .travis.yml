@@ -9,7 +9,6 @@ php:
   - 7.1
 
 install:
-  - bash ./prepare-webserver.sh
   - sh ojs.sh
   
 script:

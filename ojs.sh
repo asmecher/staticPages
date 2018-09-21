@@ -35,8 +35,8 @@ cd ../../..
 npm install
 npm run build
 
+# Start webserver
+bash lib/pkp/tools.prepare-webserver.sh
 # Install OJS
-wget http://localhost/ojs/index.php/index/install
-cat install
-#wget -O - --post-data="adminUsername=admin&adminPassword=admin&adminPassword2=admin&adminEmail=ojs@mailinator.com&locale=en_US&additionalLocales[]=en_US&clientCharset=utf-8&connectionCharset=utf8&databaseCharset=utf8&filesDir=$(pwd | sed -e 's/\//%2f/g')%2ffiles&encryption=sha1&databaseDriver=mysqli&databaseHost=localhost&databaseUsername=ojs&databasePassword=ojs&databaseName=ojs&oaiRepositoryId=ojs2.localhost" "http://localhost/ojs/index.php/index/install"
+wget -O - --post-data="adminUsername=admin&adminPassword=admin&adminPassword2=admin&adminEmail=ojs@mailinator.com&locale=en_US&additionalLocales[]=en_US&clientCharset=utf-8&connectionCharset=utf8&databaseCharset=utf8&filesDir=$(pwd | sed -e 's/\//%2f/g')%2ffiles&encryption=sha1&databaseDriver=mysqli&databaseHost=localhost&databaseUsername=ojs&databasePassword=ojs&databaseName=ojs&oaiRepositoryId=ojs2.localhost" "http://localhost/ojs/index.php/index/install"
 

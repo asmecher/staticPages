@@ -34,7 +34,7 @@ cd ../../..
 # Build the vue.js dependencies
 npm install
 npm run build
-
+cd ~
 sh server-setup.sh
 
 # Install OJS

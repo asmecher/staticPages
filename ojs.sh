@@ -5,7 +5,7 @@ startdir=$(pwd)
 cd ~
 
 # Set up the OJS database
-echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -root
+echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -uroot
 echo "CREATE USER 'ojs'@'localhost' IDENTIFIED BY 'ojs'" | mysql -uroot
 echo "GRANT ALL ON ojs.* TO 'ojs'@'localhost'" | mysql -uroot
 echo "FLUSH PRIVILEGES" | mysql -uroot
@@ -38,9 +38,11 @@ cd ../../..
 npm install
 npm run build
 
-cd $startdir
-bash ./prepare-webserver.sh
-sleep 1
-# Install OJS
-wget --tries=1 -O - --post-data="adminUsername=admin&adminPassword=admin&adminPassword2=admin&adminEmail=ojs@mailinator.com&locale=en_US&additionalLocales[]=en_US&clientCharset=utf-8&connectionCharset=utf8&databaseCharset=utf8&filesDir=$(pwd | sed -e 's/\//%2f/g')%2ffiles&encryption=sha1&databaseDriver=mysqli&databaseHost=localhost&databaseUsername=ojs&databasePassword=ojs&databaseName=ojs&oaiRepositoryId=ojs2.localhost" "http://localhost:8080/index.php/index/install/install"
+bash ${TRAVIS_BUILD_DIR}/prepare-webserver.sh
+sleep 10 # FIXME: This shouldn't be necessary! Wait for the PHP server to start.
 
+rm -r ~/ojs/plugins/generic/staticPages
+ln -s ./ ~/ojs/plugins/generic/staticPages
+
+# Install OJS
+wget --tries=1 --timeout=60 -O - --post-data="adminUsername=admin&adminPassword=admin&adminPassword2=admin&adminEmail=ojs@mailinator.com&locale=en_US&additionalLocales[]=en_US&clientCharset=utf-8&connectionCharset=utf8&databaseCharset=utf8&filesDir=files&encryption=sha1&databaseDriver=mysqli&databaseHost=localhost&databaseUsername=ojs&databasePassword=ojs&databaseName=ojs&oaiRepositoryId=ojs2.localhost" "http://localhost/index.php/index/install/install"

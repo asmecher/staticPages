@@ -5,7 +5,7 @@ startdir=$(pwd)
 cd ~
 
 # Set up the OJS database
-echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -root
+echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -uroot
 echo "CREATE USER 'ojs'@'localhost' IDENTIFIED BY 'ojs'" | mysql -uroot
 echo "GRANT ALL ON ojs.* TO 'ojs'@'localhost'" | mysql -uroot
 echo "FLUSH PRIVILEGES" | mysql -uroot

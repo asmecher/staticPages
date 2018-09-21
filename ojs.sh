@@ -43,6 +43,6 @@ sleep 10 # FIXME: This shouldn't be necessary! Wait for the PHP server to start.
 
 rm -r ~/ojs/plugins/generic/staticPages
 ln -s ./ ~/ojs/plugins/generic/staticPages
-
+ls ~/ojs/plugins/generic/staticPages
 # Install OJS
 wget --tries=1 --timeout=60 -O - --post-data="adminUsername=admin&adminPassword=admin&adminPassword2=admin&adminEmail=ojs@mailinator.com&locale=en_US&additionalLocales[]=en_US&clientCharset=utf-8&connectionCharset=utf8&databaseCharset=utf8&filesDir=files&encryption=sha1&databaseDriver=mysqli&databaseHost=localhost&databaseUsername=ojs&databasePassword=ojs&databaseName=ojs&oaiRepositoryId=ojs2.localhost" "http://localhost/index.php/index/install/install"

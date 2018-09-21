@@ -1,4 +1,8 @@
 language: php
+
+services:
+  - mysql
+
 script:
   - cd ..
   - git clone --depth=1 https://github.com/asmecher/pkp-plugin-testing

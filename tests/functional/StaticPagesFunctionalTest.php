@@ -17,33 +17,34 @@ import('lib.pkp.tests.WebTestCase');
 
 class StaticPagesFunctionalTest extends WebTestCase {
 	/**
-	 * Create a journal for the test to use.
-	 */
-	static public function setUpBeforeClass() {
-		parent::setUpBeforeClass();
-
-		$journalDao = DAORegistry::getDAO('JournalDAO');
-		$journal = $journalDao->newDataObject();
-		$journal->setPrimaryLocale('en_US');
-		$journal->setPath('testjournal');
-		$journal->setEnabled(true);
-		$journalDao->insertObject($journal);
-		$journal->updateSetting('supportedLocales', array('en_US', 'de_DE'));
-		$journal->updateSetting('supportedFormLocales', array('en_US', 'de_DE'));
-		$journal->updateSetting('supportedSubmissionLocales', array('en_US', 'de_DE'));
-		$journal->updateSetting('name', array(
-			'en_US' => 'Test journal',
-			'de_DE' => 'Wasserbüffel',
-		));
-	}
-
-	/**
 	 * Enable the plugin
 	 */
 	function testStaticPages() {
 		$this->open(self::$baseUrl);
 
-		$this->logIn('admin', 'admin');
+		parent::logIn('admin', 'admin');
+
+		/** DUPED FROM 20-CreateJournalTest.php -- RECONCILE ME */
+		$this->open(self::$baseUrl);
+		$this->waitForElementPresent('link=Administration');
+		$this->click('link=Administration');
+		$this->waitForElementPresent('link=Hosted Journals');
+		$this->click('link=Hosted Journals');
+		$this->waitForElementPresent('css=[id^=component-grid-admin-journal-journalgrid-createContext-button-]');
+		$this->click('css=[id^=component-grid-admin-journal-journalgrid-createContext-button-]');
+
+		// Enter journal data
+		$this->waitForElementPresent('css=[id^=name-en_US-]');
+		$this->type('css=[id^=name-en_US-]', 'Journal of Public Knowledge');
+		$this->type('css=[id^=name-fr_CA-]', 'Journal de la connaissance du public');
+		$this->typeTinyMCE('description-en_US', 'The Journal of Public Knowledge is a peer-reviewed quarterly publication on the subject of public access to science.');
+		$this->typeTinyMCE('description-fr_CA', 'Le Journal de Public Knowledge est une publication trimestrielle évaluée par les pairs sur le thème de l\'accès du public à la science.');
+		$this->type('css=[id^=path-]', 'publicknowledge');
+		$this->clickAndWait('css=[id^=submitFormButton-]');
+		$this->waitForElementPresent('css=div.header:contains(\'Settings Wizard\')');
+		$this->waitJQuery();
+		/** END DUPED CODE */
+
 		$this->waitForElementPresent($selector='link=Website');
 		$this->clickAndWait($selector);
 		$this->click('link=Plugins');

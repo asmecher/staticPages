@@ -14,6 +14,7 @@ echo "FLUSH PRIVILEGES" | mysql -uroot
 
 # Clone the OJS repository
 git clone https://github.com/pkp/ojs 
+: '
 cd ojs
 git submodule update --init --recursive
 # ./tools/startSubmodulesTRAVIS.sh
@@ -37,7 +38,7 @@ cd ../../..
 # Build the vue.js dependencies
 npm install
 npm run build
-
+'
 cd $startdir
 bash ./prepare-webserver.sh
 

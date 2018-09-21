@@ -39,7 +39,7 @@ npm install
 npm run build
 
 cd $startdir
-./server-setup.sh
+./prepare-webserver.sh
 
 # Install OJS
 wget -O - --post-data="adminUsername=admin&adminPassword=admin&adminPassword2=admin&adminEmail=ojs@mailinator.com&locale=en_US&additionalLocales[]=en_US&clientCharset=utf-8&connectionCharset=utf8&databaseCharset=utf8&filesDir=$(pwd | sed -e 's/\//%2f/g')%2ffiles&encryption=sha1&databaseDriver=mysqli&databaseHost=localhost&databaseUsername=ojs&databasePassword=ojs&databaseName=ojs&oaiRepositoryId=ojs2.localhost" "http://localhost/ojs/index.php/index/install/install"

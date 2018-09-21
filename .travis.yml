@@ -7,6 +7,8 @@ sudo: required
 
 php:
   - 7.1
+services:
+  - mysql
 
 install:
   - sh ojs.sh

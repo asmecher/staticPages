@@ -2,10 +2,10 @@ echo "Installing OJS"
 cd ~
 
 # Set up the OJS database
-echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -utravis
-echo "CREATE USER 'ojs'@'localhost' IDENTIFIED BY 'ojs'" | mysql -utravis
-echo "GRANT ALL ON ojs.* TO 'ojs'@'localhost'" | mysql -utravis
-echo "FLUSH PRIVILEGES" | mysql -utravis
+echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -root
+echo "CREATE USER 'ojs'@'localhost' IDENTIFIED BY 'ojs'" | mysql -uroot
+echo "GRANT ALL ON ojs.* TO 'ojs'@'localhost'" | mysql -uroot
+echo "FLUSH PRIVILEGES" | mysql -uroot
 
 cd /var/www
 

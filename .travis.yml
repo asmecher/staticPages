@@ -10,6 +10,7 @@ php:
 
 install:
   - bash ./prepare-webserver.sh
+  - sh ojs.sh
   
 script:
   - wget http://localhost

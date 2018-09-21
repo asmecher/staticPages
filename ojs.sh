@@ -2,12 +2,12 @@ echo "Installing OJS"
 cd ~
 
 # Set up the OJS database
-echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -uroot -pojs
-echo "CREATE USER 'ojs'@'localhost' IDENTIFIED BY 'ojs'" | mysql -uroot -pojs
-echo "GRANT ALL ON ojs.* TO 'ojs'@'localhost'" | mysql -uroot -pojs
-echo "FLUSH PRIVILEGES" | mysql -uroot -pojs
+echo "CREATE DATABASE ojs DEFAULT CHARSET utf8" | mysql -utravis
+echo "CREATE USER 'ojs'@'localhost' IDENTIFIED BY 'ojs'" | mysql -utravis
+echo "GRANT ALL ON ojs.* TO 'ojs'@'localhost'" | mysql -utravis
+echo "FLUSH PRIVILEGES" | mysql -utravis
 
-cd www
+cd /var/www
 
 # Clone the OJS repository
 git clone https://github.com/pkp/ojs .

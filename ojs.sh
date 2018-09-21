@@ -25,13 +25,13 @@ mkdir files
 # Install Composer dependencies
 curl -sS https://getcomposer.org/installer | php
 cd lib/pkp
-php ../../composer.phar -q update
+php ../../composer.phar -v update
 cd ../..
 cd plugins/paymethod/paypal
-php ../../../composer.phar -q update
+php ../../../composer.phar -v update
 cd ../../..
 cd plugins/generic/citationStyleLanguage
-php ../../../composer.phar -q update
+php ../../../composer.phar -v update
 cd ../../..
 
 # Build the vue.js dependencies

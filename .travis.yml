@@ -9,7 +9,7 @@ php:
   - 7.1
 
 install:
-  - sh ./setup.sh
+  - sh ./prepare-webserver.sh
   
 script:
   - wget http://localhost

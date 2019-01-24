@@ -36,8 +36,7 @@ install:
   - ln -s ${TRAVIS_BUILD_DIR} ~/${APPLICATION}/plugins/generic/staticPages
   # Install OJS/OMP & prep data environment
 script:
-  - ls -ls error.log
-  - echo "" >> error.log
+  - echo "" > error.log
   - tail -f error.log &
   - lib/pkp/lib/vendor/phpunit/phpunit/phpunit --configuration lib/pkp/tests/phpunit-env1.xml tests/data/10-InstallationTest.php
   - lib/pkp/lib/vendor/phpunit/phpunit/phpunit --configuration lib/pkp/tests/phpunit-env1.xml tests/data/20-CreateContextTest.php

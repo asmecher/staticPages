@@ -26,6 +26,8 @@ install:
   - git submodule update --init --recursive
   - source lib/pkp/tools/travis/prepare-tests.sh
   - lib/pkp/tools/travis/install-composer-dependencies.sh
+  # Update to latest stable version of npm
+  - npm i g -npm
   - npm install && npm run build
   # Prepare server environment
   - lib/pkp/tools/travis/start-xvfb.sh
@@ -35,11 +37,9 @@ install:
   - rm -rf ~/${APPLICATION}/plugins/generic/staticPages
   - ln -s ${TRAVIS_BUILD_DIR} ~/${APPLICATION}/plugins/generic/staticPages
   # Install OJS/OMP & prep data environment
-script:
-  - echo "" > error.log
-  - tail -f error.log &
   - lib/pkp/lib/vendor/phpunit/phpunit/phpunit --configuration lib/pkp/tests/phpunit-env1.xml tests/data/10-InstallationTest.php
   - lib/pkp/lib/vendor/phpunit/phpunit/phpunit --configuration lib/pkp/tests/phpunit-env1.xml tests/data/20-CreateContextTest.php
   - lib/pkp/lib/vendor/phpunit/phpunit/phpunit --configuration lib/pkp/tests/phpunit-env1.xml tests/data/59-LogOutTest.php
   - lib/pkp/tools/travis/dump-database.sh
+script:
   - lib/pkp/lib/vendor/phpunit/phpunit/phpunit --debug -v --configuration lib/pkp/tests/phpunit-env2.xml plugins/generic/staticPages/tests/functional/StaticPagesFunctionalTest.php

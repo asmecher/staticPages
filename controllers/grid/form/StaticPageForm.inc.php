@@ -43,9 +43,9 @@ class StaticPageForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'plugins.generic.staticPages.nameRequired'));
-		$this->addCheck(new FormValidatorRegExp($this, 'path', 'required', 'plugins.generic.staticPages.pathRegEx', '/^[a-zA-Z0-9\/._-]+$/'));
+		$this->addCheck(new FormValidatorRegExp($this, 'staticPagePath', 'required', 'plugins.generic.staticPages.pathRegEx', '/^[a-zA-Z0-9\/._-]+$/'));
 		$form = $this;
-		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'plugins.generic.staticPages.duplicatePath', function($path) use ($form) {
+		$this->addCheck(new FormValidatorCustom($this, 'staticPagePath', 'required', 'plugins.generic.staticPages.duplicatePath', function($path) use ($form) {
 			$staticPagesDao = DAORegistry::getDAO('StaticPagesDAO');
 			$page = $staticPagesDao->getByPath($form->contextId, $path);
 			return !$page || $page->getId()==$form->staticPageId;
@@ -60,7 +60,7 @@ class StaticPageForm extends Form {
 		if ($this->staticPageId) {
 			$staticPagesDao = DAORegistry::getDAO('StaticPagesDAO');
 			$staticPage = $staticPagesDao->getById($this->staticPageId, $this->contextId);
-			$this->setData('path', $staticPage->getPath());
+			$this->setData('staticPagePath', $staticPage->getPath());
 			$this->setData('title', $staticPage->getTitle(null)); // Localized
 			$this->setData('content', $staticPage->getContent(null)); // Localized
 		}
@@ -71,7 +71,7 @@ class StaticPageForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('path', 'title', 'content'));
+		$this->readUserVars(array('staticPagePath', 'title', 'content'));
 	}
 
 	/**
@@ -109,7 +109,7 @@ class StaticPageForm extends Form {
 			$staticPage->setContextId($this->contextId);
 		}
 
-		$staticPage->setPath($this->getData('path'));
+		$staticPage->setPath($this->getData('staticPagePath'));
 		$staticPage->setTitle($this->getData('title'), null); // Localized
 		$staticPage->setContent($this->getData('content'), null); // Localized
 

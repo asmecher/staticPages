@@ -28,7 +28,7 @@
 	{/if}
 	{fbvFormArea id="staticPagesFormArea" class="border"}
 		{fbvFormSection}
-			{fbvElement type="text" label="plugins.generic.staticPages.path" id="path" value=$path maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" label="plugins.generic.staticPages.path" id="staticPagePath" value=$staticPagePath maxlength="40" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" label="plugins.generic.staticPages.pageTitle" id="title" value=$title maxlength="255" inline=true multilingual=true size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormSection}

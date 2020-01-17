@@ -34,6 +34,5 @@ install:
   - ln -s ${TRAVIS_BUILD_DIR} ~/${APPLICATION}/plugins/generic/staticPages
   # Install OJS/OMP & prep data environment
   - $(npm bin)/cypress run --spec "cypress/tests/data/10-Installation.spec.js,cypress/tests/data/20-CreateContext.spec.js"
-  - lib/pkp/tools/travis/dump-database.sh
 script:
-  - $(npm bin)/cypress run --spec ${TRAVIS_BUILD_DIR}/cypress/tests/functional/StaticPages.spec.js
+  - $(npm bin)/cypress run --config integrationFolder=plugins/generic/staticPages/cypress/tests
